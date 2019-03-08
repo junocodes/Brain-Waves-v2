@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 
-class App extends Component {
+export default class Sponsor extends Component {
   render() {
     return (
       <div>
-        <h1>Prepped for development.</h1>
+        <span>Will display episode sponsors.</span>
       </div>
     );
   }
 }
-
-export default App;
