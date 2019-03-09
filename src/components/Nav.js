@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Grid from "./base/Grid";
 import Button from "./base/Button";
@@ -44,8 +45,12 @@ export default function Nav() {
     <NavWrapper>
       <Grid>
         <NavContent>
-          <img src={brandLogo} alt="Brain Waves Logo" />
-          <Button cta="View Topics" />
+          <Link to="/">
+            <img src={brandLogo} alt="Brain Waves Logo" />
+          </Link>
+          <Link to="/topics">
+            <Button cta="View Topics" />
+          </Link>
         </NavContent>
       </Grid>
     </NavWrapper>
