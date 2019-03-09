@@ -22,12 +22,21 @@ const PrimaryWrapper = styled.div`
 
 const PrimaryIcon = styled.div`
   display: flex;
+  align-items: flex-start;
   justify-content: center;
   color: var(--primary);
 `;
 
 const PrimaryContent = styled.div`
   grid-row: 2;
+  text-align: center;
+  h2 {
+    margin: 0 0 var(--szMD);
+    color: var(--primary);
+  }
+  p {
+    margin: 0;
+  }
 `;
 
 export default function Primary(props) {
@@ -35,7 +44,7 @@ export default function Primary(props) {
     <Grid>
       <PrimaryWrapper>
         <PrimaryIcon>
-          <Icon icon={props.iconSRC} size={30} />
+          <Icon icon={props.iconSRC} size={45} />
         </PrimaryIcon>
         <PrimaryContent>{props.children}</PrimaryContent>
       </PrimaryWrapper>
