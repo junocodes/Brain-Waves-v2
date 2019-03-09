@@ -14,6 +14,10 @@ const PrimaryWrapper = styled.div`
   z-index: 100;
   padding: var(--szLG);
   margin-bottom: var(--szXXL);
+  @media (max-width: 600px) {
+    grid-column: span 6;
+    text-align: center;
+  }
 `;
 
 const PrimaryIcon = styled.div`

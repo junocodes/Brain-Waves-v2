@@ -20,6 +20,9 @@ const MailingContent = styled.div`
   p {
     margin: 0 0 var(--szMD);
   }
+  @media (max-width: 600px) {
+    grid-column: span 6;
+  }
 `;
 
 const MailingForm = styled.div`
@@ -37,6 +40,19 @@ const MailingForm = styled.div`
       margin-right: var(--szXS);
       font-size: 1em;
       color: var(--dark);
+    }
+  }
+  @media (max-width: 600px) {
+    form {
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      height: 120px;
+      input {
+        width: 100%;
+        height: var(--szLG);
+        margin: 0 0 var(--szMD);
+      }
     }
   }
 `;

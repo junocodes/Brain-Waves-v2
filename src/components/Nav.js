@@ -25,6 +25,14 @@ const NavContent = styled.div`
       background: var(--mid);
     }
   }
+  @media (max-width: 600px) {
+    flex-flow: column;
+    align-items: center;
+    justify-content: flex-end;
+    button {
+      display: none;
+    }
+  }
 `;
 
 export default function Nav() {

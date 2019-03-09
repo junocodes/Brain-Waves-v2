@@ -12,6 +12,12 @@ const Feature = styled.div`
   p {
     margin: 0;
   }
+  @media (max-width: 600px) {
+    grid-column: span 6;
+    :first-of-type {
+      margin-bottom: var(--szLG);
+    }
+  }
 `;
 
 export default function Features() {
