@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import brandIcon from "../assets/brand/brainwaves-icon.png";
 
 const FooterContent = styled.div`
   display: flex;
@@ -9,6 +10,9 @@ const FooterContent = styled.div`
   background: var(--dark);
   text-align: center;
   padding: var(--szXXL) 0;
+  img {
+    max-width: var(--szXXL);
+  }
   small {
     margin-top: var(--szMD);
     color: var(--mid);
@@ -18,7 +22,7 @@ const FooterContent = styled.div`
 export default function Footer() {
   return (
     <FooterContent>
-      <img src="http://placehold.it/90x90.jpg" alt="Brain Waves Icon" />
+      <img src={brandIcon} alt="Brain Waves Icon" />
       <small>All Rights Reserved &copy; {new Date().getFullYear()}</small>
     </FooterContent>
   );

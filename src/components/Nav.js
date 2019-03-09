@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Grid from "./base/Grid";
 import Button from "./base/Button";
+import brandLogo from "../assets/brand/brainwaves-logo.png";
 
 const NavWrapper = styled.div`
   position: absolute;
@@ -18,6 +19,9 @@ const NavContent = styled.div`
   align-items: flex-end;
   justify-content: space-between;
   height: var(--szXL);
+  img {
+    height: var(--szLG);
+  }
   button {
     color: var(--dark);
     background: var(--light);
@@ -40,7 +44,7 @@ export default function Nav() {
     <NavWrapper>
       <Grid>
         <NavContent>
-          <img src="http://placehold.it/220x45.jpg" alt="Brain Waves Logo" />
+          <img src={brandLogo} alt="Brain Waves Logo" />
           <Button cta="View Topics" />
         </NavContent>
       </Grid>

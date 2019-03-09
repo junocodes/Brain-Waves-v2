@@ -40,6 +40,7 @@ const MailingForm = styled.div`
       margin-right: var(--szXS);
       font-size: 1em;
       color: var(--dark);
+      background: varr(--light);
     }
   }
   @media (max-width: 600px) {

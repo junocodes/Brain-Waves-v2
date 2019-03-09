@@ -1,9 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import Grid from "./base/Grid";
+import wavesHero from "../assets/hero/waves.jpg";
 
 const HeroWrapper = styled.div`
-  background: var(--primary);
+  background-color: var(--primary);
+  background-image: url('${wavesHero}');
+  background-blend-mode: multiply;
+  background-size: cover;
+  background-repeat: no-repeat;
   > * {
     grid-template-rows: var(--szXL) 1fr var(--szXXL);
   }
@@ -15,6 +20,7 @@ const HeroContent = styled.div`
   h1 {
     margin: var(--szXXL) 0;
     color: var(--light);
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
   }
 `;
 
