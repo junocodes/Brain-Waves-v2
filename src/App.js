@@ -17,7 +17,7 @@ class App extends Component {
         <>
           <Route exact path="/" component={Landing} />
           <Route path="/topics" component={Topics} />
-          <Route path="/episodes" component={Episodes} />
+          <Route path="/episodes/:slug" component={Episodes} />
         </>
         <Features />
         <Sponsor />
