@@ -1,7 +1,8 @@
 export default [
   {
-    title: "Culture",
+    topic: "Culture",
     coverArt: "/assets/images/covers/culture.png",
+    headline: "With the right people, culture, and values, you can accomplish great things.",
     slug: "culture",
     episodes: [
       {
@@ -25,8 +26,9 @@ export default [
     ]
   },
   {
-    title: "Diversity",
+    topic: "Diversity",
     coverArt: "/assets/images/covers/diversity.png",
+    headline: "If you’re going to build a product for everyone, you need to have a team that represents everyone.",
     slug: "diversity",
     episodes: [
       {
@@ -56,8 +58,9 @@ export default [
     ]
   },
   {
-    title: "Leadership",
+    topic: "Leadership",
     coverArt: "/assets/images/covers/leadership.png",
+    headline: "Leadership is a way of thinking, a way of acting, and most importantly, a way of communicating.",
     slug: "leadership",
     episodes: [
       {
@@ -93,8 +96,9 @@ export default [
     ]
   },
   {
-    title: "Teams",
+    topic: "Teams",
     coverArt: "/assets/images/covers/teams.png",
+    headline: "A team is not a group of people that work together. A team is a group of people that trust each other.",
     slug: "teams",
     episodes: [
       {

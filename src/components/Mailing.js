@@ -66,8 +66,7 @@ export default function Mailing() {
           <h4>Never miss an episode!</h4>
           <p>
             If this were a real application, you could sign up and be notified
-            with each new episode, but it's not. So enter your email and toggle
-            some state instead.
+            with each new episode, but it's not. Who knows, maybe I'll wire this up for fun.
           </p>
           <MailingForm>
             <form>

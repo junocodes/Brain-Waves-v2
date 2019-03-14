@@ -37,6 +37,14 @@ const PrimaryContent = styled.div`
   p {
     margin: 0;
   }
+  button {
+    margin-top: var(--szMD);
+  }
+  @media (min-width: 600px) {
+    button {
+      display: none;
+    }
+  }
 `;
 
 export default function Primary(props) {

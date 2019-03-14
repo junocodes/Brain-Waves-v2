@@ -78,9 +78,9 @@ export default class Topics extends Component {
           {topics.map((topic, index) => {
             return (
               <TopicWrapper key={index}>
-                <TopicCover src={topic.coverArt} alt={topic.title} />
+                <TopicCover src={topic.coverArt} alt={topic.topic} />
                 <TopicInfo>
-                  <h2>{topic.title}</h2>
+                  <h2>{topic.topic}</h2>
                   <span>{topic.episodes.length} episodes</span>
                   <Link to={`/episodes/${topic.slug}`}>
                     <Button cta="Listen" />
