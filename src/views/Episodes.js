@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import Hero from "../components/Hero";
 import Primary from "../components/Primary";
+import { Icon } from "react-icons-kit";
 import { podcast } from "react-icons-kit/fa/podcast";
+import { play } from "react-icons-kit/entypo/play";
+import { paus } from "react-icons-kit/entypo/paus";
 import podcastData from "../data/podcastData";
 
 const TopicHeader = styled.div`
@@ -48,7 +51,8 @@ export default class Episodes extends Component {
     this.state = {
       topic: topic,
       currentEpisode: topic.episodes[0],
-      isPlaying: false
+      isPlaying: false,
+      isHovered: false
     };
 
     this.audioElement = document.createElement("audio");
@@ -83,7 +87,8 @@ export default class Episodes extends Component {
   }
 
   render() {
-    const { topic } = this.state;
+    const { topic, isPlaying, currentEpisode, isHovered } = this.state;
+
     return (
       <>
         <Hero headline={topic.headline} />
@@ -105,9 +110,23 @@ export default class Episodes extends Component {
                 return (
                   <tr
                     key={index}
+                    onMouseEnter={() => this.setState({ isHovered: index + 1 })}
+                    onMouseLeave={() => this.setState({ isHovered: false })}
                     onClick={() => this.handleEpisodeClick(episode)}
                   >
-                    <td>{index + 1}</td>
+                    <td>
+                      {isPlaying && episode === currentEpisode && (
+                        <Icon icon={paus} />
+                      )}
+                      {!isPlaying && episode === currentEpisode && (
+                        <Icon icon={play} />
+                      )}
+                      {episode !== currentEpisode &&
+                        isHovered === index + 1 && <Icon icon={play} />}
+                      {episode !== currentEpisode &&
+                        isHovered !== index + 1 &&
+                        index + 1}
+                    </td>
                     <td>{episode.title}</td>
                     <td>{episode.duration}</td>
                   </tr>
