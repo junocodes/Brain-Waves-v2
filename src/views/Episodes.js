@@ -46,8 +46,40 @@ export default class Episodes extends Component {
     });
 
     this.state = {
-      topic: topic
+      topic: topic,
+      currentEpisode: topic.episodes[0],
+      isPlaying: false
     };
+
+    this.audioElement = document.createElement("audio");
+    this.audioElement.src = topic.episodes[0].audioSrc;
+  }
+
+  play() {
+    this.audioElement.play();
+    this.setState({ isPlaying: true });
+  }
+
+  pause() {
+    this.audioElement.pause();
+    this.setState({ isPlaying: false });
+  }
+
+  setEpisode(episode) {
+    this.audioElement.src = episode.audioSrc;
+    this.setState({ currentEpisode: episode });
+  }
+
+  handleEpisodeClick(episode) {
+    const isSameEpisode = this.state.currentEpisode === episode;
+    if (this.state.isPlaying && isSameEpisode) {
+      this.pause();
+    } else {
+      if (!isSameEpisode) {
+        this.setEpisode(episode);
+      }
+      this.play();
+    }
   }
 
   render() {
@@ -71,7 +103,10 @@ export default class Episodes extends Component {
             <tbody>
               {topic.episodes.map((episode, index) => {
                 return (
-                  <tr key={index}>
+                  <tr
+                    key={index}
+                    onClick={() => this.handleEpisodeClick(episode)}
+                  >
                     <td>{index + 1}</td>
                     <td>{episode.title}</td>
                     <td>{episode.duration}</td>
