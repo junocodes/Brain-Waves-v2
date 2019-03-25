@@ -100,7 +100,8 @@ export default class Player extends Component {
       duration,
       handleTimeChange,
       currentVolume,
-      handleVolumeChange
+      handleVolumeChange,
+      formatTime
     } = this.props;
 
     return (
@@ -108,7 +109,7 @@ export default class Player extends Component {
         <Grid>
           <EpisodeDuration>
             <span>
-              <small>{currentTime}</small>
+              <small>{formatTime(currentTime)}</small>
             </span>
             <input
               type="range"
@@ -119,7 +120,7 @@ export default class Player extends Component {
               onChange={handleTimeChange}
             />
             <span>
-              <small>{duration}</small>
+              <small>{formatTime(duration)}</small>
             </span>
           </EpisodeDuration>
           <EpisodeControls>
@@ -142,7 +143,7 @@ export default class Player extends Component {
               value={currentVolume}
               max="1"
               min="0"
-              step=".01"
+              step=".05"
               onChange={handleVolumeChange}
             />
             <span>

@@ -168,6 +168,21 @@ export default class Episodes extends Component {
     this.setState({ currentVolume: newVolume });
   }
 
+  formatTime(time) {
+    var sec_num = parseInt(time, 10);
+    var hours = Math.floor((sec_num + 0.001) / 3600) % 24;
+    var minutes = Math.floor(sec_num / 60) % 60;
+    var seconds = sec_num % 60;
+    if (isNaN(hours)) {
+      return "-:--";
+    } else {
+      return [hours, minutes, seconds]
+        .map(v => (v < 10 ? "0" + v : v))
+        .filter((v, i) => v !== "00" || i > 0)
+        .join(":");
+    }
+  }
+
   render() {
     const { topic, isPlaying, currentEpisode, isHovered } = this.state;
 
@@ -210,7 +225,7 @@ export default class Episodes extends Component {
                         index + 1}
                     </td>
                     <td>{episode.title}</td>
-                    <td>{episode.duration}</td>
+                    <td>{this.formatTime(episode.duration)}</td>
                   </tr>
                 );
               })}
@@ -228,6 +243,7 @@ export default class Episodes extends Component {
           handleTimeChange={e => this.handleTimeChange(e)}
           currentVolume={this.audioElement.volume}
           handleVolumeChange={e => this.handleVolumeChange(e)}
+          formatTime={time => this.formatTime(time)}
         />
       </>
     );
