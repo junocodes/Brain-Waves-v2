@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import Hero from "../components/Hero";
 import Primary from "../components/Primary";
+import Player from "../components/Player";
 import { Icon } from "react-icons-kit";
 import { podcast } from "react-icons-kit/fa/podcast";
 import { play } from "react-icons-kit/entypo/play";
@@ -86,6 +87,29 @@ export default class Episodes extends Component {
     }
   }
 
+  handlePrevClick() {
+    const currentIndex = this.state.topic.episodes.findIndex(
+      episode => this.state.currentEpisode === episode
+    );
+    const newIndex = Math.max(0, currentIndex - 1);
+    const newEpisode = this.state.topic.episodes[newIndex];
+    this.setEpisode(newEpisode);
+    this.play();
+  }
+
+  handleNextClick() {
+    const currentIndex = this.state.topic.episodes.findIndex(
+      episode => this.state.currentEpisode === episode
+    );
+    const newIndex = Math.min(
+      this.state.topic.episodes.length - 1,
+      currentIndex + 1
+    );
+    const newEpisode = this.state.topic.episodes[newIndex];
+    this.setEpisode(newEpisode);
+    this.play();
+  }
+
   render() {
     const { topic, isPlaying, currentEpisode, isHovered } = this.state;
 
@@ -135,6 +159,13 @@ export default class Episodes extends Component {
             </tbody>
           </EpisodeList>
         </Primary>
+        <Player
+          isPlaying={isPlaying}
+          currentSong={currentEpisode}
+          handleEpisodeClick={() => this.handleEpisodeClick(currentEpisode)}
+          handlePrevClick={() => this.handlePrevClick()}
+          handleNextClick={() => this.handleNextClick()}
+        />
       </>
     );
   }

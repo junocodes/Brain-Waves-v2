@@ -17,6 +17,9 @@ const FooterContent = styled.div`
     margin-top: var(--szMD);
     color: var(--mid);
   }
+  @media (max-width: 660px) {
+    padding-bottom: 210px;
+  }
 `;
 
 export default function Footer() {
