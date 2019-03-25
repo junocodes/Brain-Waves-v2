@@ -52,12 +52,16 @@ export default class Episodes extends Component {
     this.state = {
       topic: topic,
       currentEpisode: topic.episodes[0],
+      currentTime: 0,
+      duration: topic.episodes[0].duration,
+      currentVolume: 0.5,
       isPlaying: false,
       isHovered: false
     };
 
     this.audioElement = document.createElement("audio");
     this.audioElement.src = topic.episodes[0].audioSrc;
+    this.audioElement.volume = 0.5;
   }
 
   play() {
@@ -68,6 +72,48 @@ export default class Episodes extends Component {
   pause() {
     this.audioElement.pause();
     this.setState({ isPlaying: false });
+  }
+
+  componentDidMount() {
+    this.eventListeners = {
+      timeupdate: e => {
+        this.setState({ currentTime: this.audioElement.currentTime });
+      },
+      durationchange: e => {
+        this.setState({ duration: this.audioElement.duration });
+      },
+      volumechange: e => {
+        this.setState({ currentVolume: this.audioElement.volume });
+      }
+    };
+    this.audioElement.addEventListener(
+      "timeupdate",
+      this.eventListeners.timeupdate
+    );
+    this.audioElement.addEventListener(
+      "durationchange",
+      this.eventListeners.durationchange
+    );
+    this.audioElement.addEventListener(
+      "volumechange",
+      this.eventListeners.volumechange
+    );
+  }
+
+  componentWillUnmount() {
+    this.audioElement.src = null;
+    this.audioElement.removeEventListener(
+      "timeupdate",
+      this.eventListeners.timeupdate
+    );
+    this.audioElement.removeEventListener(
+      "durationchange",
+      this.eventListeners.durationchange
+    );
+    this.audioElement.removeEventListener(
+      "volumechange",
+      this.eventListeners.volumechange
+    );
   }
 
   setEpisode(episode) {
@@ -108,6 +154,18 @@ export default class Episodes extends Component {
     const newEpisode = this.state.topic.episodes[newIndex];
     this.setEpisode(newEpisode);
     this.play();
+  }
+
+  handleTimeChange(e) {
+    const newTime = this.audioElement.duration * e.target.value;
+    this.audioElement.currentTime = newTime;
+    this.setState({ currentTime: newTime });
+  }
+
+  handleVolumeChange(e) {
+    const newVolume = e.target.value;
+    this.audioElement.volume = newVolume;
+    this.setState({ currentVolume: newVolume });
   }
 
   render() {
@@ -165,6 +223,11 @@ export default class Episodes extends Component {
           handleEpisodeClick={() => this.handleEpisodeClick(currentEpisode)}
           handlePrevClick={() => this.handlePrevClick()}
           handleNextClick={() => this.handleNextClick()}
+          currentTime={this.audioElement.currentTime}
+          duration={this.audioElement.duration}
+          handleTimeChange={e => this.handleTimeChange(e)}
+          currentVolume={this.audioElement.volume}
+          handleVolumeChange={e => this.handleVolumeChange(e)}
         />
       </>
     );

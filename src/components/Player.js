@@ -93,10 +93,14 @@ export default class Player extends Component {
   render() {
     const {
       isPlaying,
-      currentEpisode,
       handleEpisodeClick,
       handlePrevClick,
-      handleNextClick
+      handleNextClick,
+      currentTime,
+      duration,
+      handleTimeChange,
+      currentVolume,
+      handleVolumeChange
     } = this.props;
 
     return (
@@ -104,11 +108,18 @@ export default class Player extends Component {
         <Grid>
           <EpisodeDuration>
             <span>
-              <small>-:--</small>
+              <small>{currentTime}</small>
             </span>
-            <input type="range" value="0" />
+            <input
+              type="range"
+              value={currentTime / duration || 0}
+              max="1"
+              min="0"
+              step="0.01"
+              onChange={handleTimeChange}
+            />
             <span>
-              <small>-:--</small>
+              <small>{duration}</small>
             </span>
           </EpisodeDuration>
           <EpisodeControls>
@@ -126,10 +137,17 @@ export default class Player extends Component {
             <span>
               <Icon icon={volume} />
             </span>
-            <input type="range" value="80" />
+            <input
+              type="range"
+              value={currentVolume}
+              max="1"
+              min="0"
+              step=".01"
+              onChange={handleVolumeChange}
+            />
             <span>
               <small>
-                <small>80%</small>
+                <small>{currentVolume * 100}%</small>
               </small>
             </span>
           </EpisodeVolume>
